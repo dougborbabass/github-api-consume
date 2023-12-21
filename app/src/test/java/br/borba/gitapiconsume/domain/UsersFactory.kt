@@ -1,15 +1,16 @@
 package br.borba.cleanmvvm.domain
 
 import br.borba.gitapiconsume.clean.data.model.UsersListResponse
+import br.borba.gitapiconsume.clean.domain.model.UsersListModel
 
 object UsersFactory {
 
     val users = listOf(
-        UsersListResponse(
+        UsersListModel(
             id = 0,
             name = "Douglas"
         ),
-        UsersListResponse(
+        UsersListModel(
             id = 1,
             name = "Borba"
         )
