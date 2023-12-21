@@ -1,8 +1,9 @@
 package br.borba.gitapiconsume.clean.data.model
 
+import br.borba.gitapiconsume.clean.domain.model.UsersListModel
 import com.google.gson.annotations.SerializedName
 
-data class UsersListModel(
+data class UsersListResponse(
     @SerializedName("avatar_url")
     val avatarUrl: String = "",
     @SerializedName("bio")
@@ -67,4 +68,9 @@ data class UsersListModel(
     val updatedAt: String = "",
     @SerializedName("url")
     val url: String = ""
+)
+
+fun UsersListResponse.toFinalUsersList() = UsersListModel(
+    name = this.name,
+    id = this.id
 )
