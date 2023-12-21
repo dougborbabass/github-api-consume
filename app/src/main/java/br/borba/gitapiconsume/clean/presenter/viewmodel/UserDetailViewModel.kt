@@ -21,9 +21,9 @@ class UserDetailViewModel(
     private val _userDetail = MutableLiveData<UsersUiModel>()
     val userDetail = _userDetail as LiveData<UsersUiModel>
 
-    fun getUserDetail() {
+    fun getUserDetail(user: String) {
         viewModelScope.launch {
-            val usersList = getUserDetailUseCase()
+            val usersList = getUserDetailUseCase(user)
 
             _userDetail.value = usersList.toUiModel()
         }

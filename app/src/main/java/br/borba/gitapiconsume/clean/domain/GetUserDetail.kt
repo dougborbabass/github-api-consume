@@ -6,13 +6,13 @@ import br.borba.gitapiconsume.clean.domain.model.UsersListModel
 class GetUserDetail(
     private val repository: MainRepository
 ) : GetUserDetailUseCase {
-    override suspend fun invoke(): UsersListModel = try {
-        repository.getUserDetail("torvalds")
+    override suspend fun invoke(user: String): UsersListModel = try {
+        repository.getUserDetail(user)
     } catch (ex: Exception) {
         throw Exception("error parse Detail")
     }
 }
 
 interface GetUserDetailUseCase {
-    suspend operator fun invoke(): UsersListModel
+    suspend operator fun invoke(user: String): UsersListModel
 }
