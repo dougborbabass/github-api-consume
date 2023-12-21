@@ -1,0 +1,29 @@
+package br.borba.gitapiconsume.clean.presenter.view
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import br.borba.cleanmvvm.databinding.FragmentUsersBinding
+import br.borba.gitapiconsume.clean.presenter.viewmodel.UsersViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+
+class UsersFragment : Fragment() {
+
+    private val viewModel: UsersViewModel by sharedViewModel()
+    private lateinit var binding: FragmentUsersBinding
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentUsersBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
+
+}
