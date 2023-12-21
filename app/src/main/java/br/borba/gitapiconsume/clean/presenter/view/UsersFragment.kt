@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import br.borba.cleanmvvm.R
 import br.borba.cleanmvvm.databinding.FragmentUsersBinding
 import br.borba.gitapiconsume.clean.data.model.UsersListResponse
 import br.borba.gitapiconsume.clean.presenter.adapter.UsersListAdapter
@@ -76,8 +78,13 @@ class UsersFragment : Fragment() {
         }
     }
 
-    private fun populateUsersList(categories: List<UsersUiModel>) {
-        binding.rvUsers.adapter = UsersListAdapter(categories)
+    private fun populateUsersList(users: List<UsersUiModel>) {
+        binding.rvUsers.adapter = UsersListAdapter(users) { onUserItemClick(it) }
+    }
+
+    private fun onUserItemClick(user: UsersUiModel) {
+        val bundle = bundleOf("userDetail" to user)
+        findNavController().navigate(R.id.action_homeUsers_to_detailFragment, bundle)
     }
 
 }

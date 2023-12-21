@@ -6,15 +6,34 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import br.borba.cleanmvvm.R
+import br.borba.cleanmvvm.databinding.FragmentDetailBinding
+import br.borba.gitapiconsume.clean.data.model.UsersListResponse
+import br.borba.gitapiconsume.clean.presenter.model.UsersUiModel
 
 class DetailFragment : Fragment() {
 
+    private lateinit var binding: FragmentDetailBinding
+    private lateinit var userDetail: UsersUiModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            userDetail = it.getParcelable("userDetail")!!
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+        binding = FragmentDetailBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.tvUserName.text = userDetail.userName
+
     }
 }

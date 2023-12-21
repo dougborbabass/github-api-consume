@@ -4,11 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.borba.cleanmvvm.databinding.ItemUsersBinding
+import br.borba.gitapiconsume.clean.data.model.UsersListResponse
 import br.borba.gitapiconsume.clean.presenter.model.UsersUiModel
 import coil.load
 
 class UsersListAdapter(
-    private val usersList: List<UsersUiModel>
+    private val usersList: List<UsersUiModel>,
+    private val itemClick: (item: UsersUiModel) -> Unit
 ) : RecyclerView.Adapter<UsersListAdapter.CategoriesViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -23,8 +25,11 @@ class UsersListAdapter(
         val users = usersList[position]
 
         with(holder) {
-            binding.tvUserName.text = users.userName
-            binding.ivUsers.load(users.avatarUrl)
+            with(users) {
+                binding.tvUserName.text = users.userName
+                binding.ivUsers.load(users.avatarUrl)
+                binding.row.setOnClickListener { itemClick(this) }
+            }
         }
     }
 
