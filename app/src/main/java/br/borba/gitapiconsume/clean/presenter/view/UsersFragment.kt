@@ -24,6 +24,12 @@ class UsersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getUsers()
+
+        viewModel.users.observe( viewLifecycleOwner) { listUsersUiModel ->
+            println("listUsersUiModel = $listUsersUiModel")
+        }
+
     }
 
 }
