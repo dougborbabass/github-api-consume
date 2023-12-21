@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CleanMVVM">
+        android:theme="@style/Base.Theme.CleanMVVM">
         <activity android:name="br.borba.gitapiconsume.clean.presenter.view.MainActivity"
             android:exported="true">
             <intent-filter>
