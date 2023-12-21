@@ -12,11 +12,11 @@ class MainRepositoryImpl(
 
     override suspend fun getListUsers(): List<UsersListModel> {
 
-        val result = service.getListUsers().parseResponse()
+        val result = service.getListUsers(5,1).parseResponse()
 
         return when (result) {
             is Output.Success -> {
-                val listUsersResult = result.value.usersList
+                val listUsersResult = result.value
 
                 listUsersResult.map {
                     it.toFinalUsersList()
