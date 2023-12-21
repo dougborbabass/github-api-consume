@@ -11,9 +11,7 @@ class MainRepositoryImpl(
 ) : MainRepository {
 
     override suspend fun getListUsers(): List<UsersListModel> {
-
         val result = service.getListUsers(20,1).parseResponse()
-
         return when (result) {
             is Output.Success -> {
                 val listUsersResult = result.value
@@ -21,16 +19,27 @@ class MainRepositoryImpl(
                 listUsersResult.map {
                     it.toFinalUsersList()
                 }
-
             }
+            is Output.Failure -> throw GetUsersException()
+        }
+    }
 
+    override suspend fun getUserDetail(user: String): UsersListModel {
+        val result = service.getDetail(user).parseResponse()
+        return when (result) {
+            is Output.Success -> {
+                val listUsersResult = result.value
+                listUsersResult.toFinalUsersList()
+            }
             is Output.Failure -> throw GetUsersException()
         }
     }
 }
 
+
 interface MainRepository {
     suspend fun getListUsers(): List<UsersListModel>
+    suspend fun getUserDetail(user: String): UsersListModel
 }
 
 class GetUsersException : Exception()
