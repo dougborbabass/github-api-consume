@@ -7,10 +7,13 @@ data class UsersListResponse(
     @SerializedName("login")
     val userName: String = "",
     @SerializedName("id")
-    val id: Int = 0
+    val id: Int = 0,
+    @SerializedName("avatar_url")
+    val avatarUrl: String
 )
 
 fun UsersListResponse.toFinalUsersList() = UsersListModel(
     userName = this.userName,
-    id = this.id
+    id = this.id,
+    avatarUrl = this.avatarUrl
 )

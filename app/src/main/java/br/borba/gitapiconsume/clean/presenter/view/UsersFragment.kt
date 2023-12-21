@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import br.borba.cleanmvvm.databinding.FragmentUsersBinding
+import br.borba.gitapiconsume.clean.presenter.adapter.UsersListAdapter
+import br.borba.gitapiconsume.clean.presenter.model.UsersUiModel
 import br.borba.gitapiconsume.clean.presenter.viewmodel.UsersViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -24,12 +26,20 @@ class UsersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getUsers()
+        viewModel.lauchDataLoad { viewModel.getUsers() }
 
-        viewModel.users.observe( viewLifecycleOwner) { listUsersUiModel ->
-            println("listUsersUiModel = $listUsersUiModel")
+        viewModel.loading.observe(viewLifecycleOwner) {showProgressBar ->
+            if (showProgressBar) binding.progress.visibility = View.VISIBLE
+            else binding.progress.visibility = View.GONE
+        }
+
+        viewModel.users.observe(viewLifecycleOwner) { listUsersUiModel ->
+            populateUsersList(listUsersUiModel)
         }
 
     }
 
+    private fun populateUsersList(categories: List<UsersUiModel>) {
+        binding.rvUsers.adapter = UsersListAdapter(categories)
+    }
 }

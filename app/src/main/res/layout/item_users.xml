@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_meal"
+        android:id="@+id/iv_users"
         android:layout_width="80dp"
         android:layout_height="80dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -14,15 +14,15 @@
         tools:srcCompat="rand"/>
 
     <TextView
-        android:id="@+id/tv_meal"
+        android:id="@+id/tv_userName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:maxLines="2"
-        app:layout_constraintStart_toEndOf="@id/iv_meal"
-        app:layout_constraintTop_toTopOf="@id/iv_meal"
-        app:layout_constraintBottom_toBottomOf="@id/iv_meal"
+        app:layout_constraintStart_toEndOf="@id/iv_users"
+        app:layout_constraintTop_toTopOf="@id/iv_users"
+        app:layout_constraintBottom_toBottomOf="@id/iv_users"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="@tools:sample/lorem/random"/>
 
