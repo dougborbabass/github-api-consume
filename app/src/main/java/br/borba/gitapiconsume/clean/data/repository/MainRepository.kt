@@ -3,6 +3,7 @@ package br.borba.gitapiconsume.clean.data.repository
 import br.borba.gitapiconsume.clean.data.api.GitHubApi
 import br.borba.gitapiconsume.clean.data.model.toFinaRepoList
 import br.borba.gitapiconsume.clean.data.model.toFinalUsersList
+import br.borba.gitapiconsume.clean.domain.model.UserRepoModel
 import br.borba.gitapiconsume.clean.domain.model.UsersListModel
 import br.borba.gitapiconsume.network.Output
 import br.borba.gitapiconsume.network.parseResponse
@@ -38,7 +39,7 @@ class MainRepositoryImpl(
         }
     }
 
-    override suspend fun getUserRepos(user: String): List<UsersListModel> {
+    override suspend fun getUserRepos(user: String): List<UserRepoModel> {
         val result = service.getRepos(user).parseResponse()
         return when (result) {
             is Output.Success -> {
@@ -57,7 +58,7 @@ class MainRepositoryImpl(
 interface MainRepository {
     suspend fun getListUsers(): List<UsersListModel>
     suspend fun getUserDetail(user: String): UsersListModel
-    suspend fun getUserRepos(user: String): List<UsersListModel>
+    suspend fun getUserRepos(user: String): List<UserRepoModel>
 }
 
 class GetUsersException : Exception()

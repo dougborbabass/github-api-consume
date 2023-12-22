@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.borba.gitapiconsume.clean.domain.GetUserReposUseCase
-import br.borba.gitapiconsume.clean.presenter.model.UsersUiModel
+import br.borba.gitapiconsume.clean.presenter.model.UserRepoUiModel
 import br.borba.gitapiconsume.clean.presenter.model.toUiModel
 import kotlinx.coroutines.launch
 
@@ -18,12 +18,14 @@ class UserReposViewModel(
     val loading: LiveData<Boolean>
         get() = _loading
 
-    private val _userRepoos = MutableLiveData<List<UsersUiModel>>()
-    val userRepos = _userRepoos as LiveData<List<UsersUiModel>>
+    private val _userRepoos = MutableLiveData<List<UserRepoUiModel>>()
+    val userRepos = _userRepoos as LiveData<List<UserRepoUiModel>>
 
     fun getUserRepos(user: String) {
         viewModelScope.launch {
             val usersList = getUserReposUseCase(user)
+
+            println("usersList = ${usersList.size}")
 
             _userRepoos.value = usersList.map { usersFinal ->
                 usersFinal.toUiModel()

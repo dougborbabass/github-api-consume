@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import br.borba.cleanmvvm.databinding.FragmentReposListBinding
 import br.borba.gitapiconsume.clean.presenter.adapter.UserReposAdapter
+import br.borba.gitapiconsume.clean.presenter.model.UserRepoUiModel
 import br.borba.gitapiconsume.clean.presenter.model.UsersUiModel
 import br.borba.gitapiconsume.clean.presenter.viewmodel.UserReposViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -51,7 +52,7 @@ class ReposListFragment : Fragment() {
         }
     }
 
-    private fun populateReposList(repos: List<UsersUiModel>) {
+    private fun populateReposList(repos: List<UserRepoUiModel>) {
         binding.rvRepoList.adapter = UserReposAdapter(repos) { onRepoClick(it) }
     }
 

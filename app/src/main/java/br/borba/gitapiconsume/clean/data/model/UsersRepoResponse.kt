@@ -2,6 +2,7 @@ package br.borba.gitapiconsume.clean.data.model
 
 
 
+import br.borba.gitapiconsume.clean.domain.model.UserRepoModel
 import br.borba.gitapiconsume.clean.domain.model.UsersListModel
 import com.google.gson.annotations.SerializedName
 
@@ -31,7 +32,7 @@ data class UserRepoItemResponse (
     @SerializedName("url")
     val url: String = ""
 )
-fun UserRepoItemResponse.toFinaRepoList() = UsersListModel(
+fun UserRepoItemResponse.toFinaRepoList() = UserRepoModel(
     description = this.description,
     forksCount = this.forksCount,
     fullName = this.fullName,

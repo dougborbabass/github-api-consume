@@ -5,12 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.borba.cleanmvvm.databinding.ItemReposBinding
+import br.borba.gitapiconsume.clean.presenter.model.UserRepoUiModel
 import br.borba.gitapiconsume.clean.presenter.model.UsersUiModel
 import br.borba.gitapiconsume.util.NumberFormatter
 import coil.load
+import coil.transform.RoundedCornersTransformation
 
 class UserReposAdapter(
-    private val userRepos: List<UsersUiModel>,
+    private val userRepos: List<UserRepoUiModel>,
     private val itemClick: (item: UsersUiModel) -> Unit
 ) : RecyclerView.Adapter<UserReposAdapter.CategoriesViewHolder>() {
     override fun onCreateViewHolder(
@@ -27,11 +29,15 @@ class UserReposAdapter(
 
         with(holder) {
             with(binding) {
-                tvUserName.text = repos.userName
-                ivUserPic.load(repos.avatarUrl)
+                tvUserName.text = repos.owner.userName
+                ivUserPic.load(repos.owner.avatarUrl) {
+                    crossfade(true)
+                    transformations(RoundedCornersTransformation(8f))
+                }
+                tvRepoDesc.text = repos.description
                 tvRepoDesc.setVisibleIf(repos.description?.isNotEmpty() ?: false)
-                tvRepoStarCount.text = NumberFormatter.formatWithSuffix(repos.starCount)
-                tvRepoForkCount.text = NumberFormatter.formatWithSuffix(repos.forkCount)
+                tvRepoStarCount.text = NumberFormatter.formatWithSuffix(repos.starsCount)
+                tvRepoForkCount.text = NumberFormatter.formatWithSuffix(repos.forksCount)
                 tvRepoLanguage.text = repos.language
                 tvRepoLanguage.setVisibleIf(repos.language?.isNotEmpty() ?: false)
             }
