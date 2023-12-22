@@ -68,9 +68,7 @@ class ReposListFragment : Fragment() {
     }
 
     private fun onRepoClick(userRepo: UserRepoUiModel) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(userRepo.url))
-        if (intent.resolveActivity(requireActivity().packageManager) != null) {
-            startActivity(intent)
-        }
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(userRepo.htmlUrl))
+        startActivity(intent)
     }
 }
