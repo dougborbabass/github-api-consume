@@ -13,7 +13,7 @@ import coil.transform.RoundedCornersTransformation
 
 class UserReposAdapter(
     private val userRepos: List<UserRepoUiModel>,
-    private val itemClick: (item: UsersUiModel) -> Unit
+    private val itemClick: (item: UserRepoUiModel) -> Unit
 ) : RecyclerView.Adapter<UserReposAdapter.CategoriesViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -30,6 +30,7 @@ class UserReposAdapter(
         with(holder) {
             with(binding) {
                 tvUserName.text = repos.owner.userName
+                tvRepoName.text = repos.name
                 ivUserPic.load(repos.owner.avatarUrl) {
                     crossfade(true)
                     transformations(RoundedCornersTransformation(8f))
@@ -40,6 +41,8 @@ class UserReposAdapter(
                 tvRepoForkCount.text = NumberFormatter.formatWithSuffix(repos.forksCount)
                 tvRepoLanguage.text = repos.language
                 tvRepoLanguage.setVisibleIf(repos.language?.isNotEmpty() ?: false)
+
+                root.setOnClickListener { itemClick(repos) }
             }
         }
     }

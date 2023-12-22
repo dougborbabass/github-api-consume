@@ -21,7 +21,7 @@ data class UserRepoItemResponse (
     val id: Int = 0,
     @SerializedName("language")
     val language: String? = "",
-    @SerializedName("languages_url")
+    @SerializedName("name")
     val name: String = "",
     @SerializedName("owner")
     val owner: UserOwnerModel = UserOwnerModel(),

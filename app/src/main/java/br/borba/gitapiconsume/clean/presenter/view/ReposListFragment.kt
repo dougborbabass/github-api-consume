@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import br.borba.cleanmvvm.R
 import br.borba.cleanmvvm.databinding.FragmentReposListBinding
 import br.borba.gitapiconsume.clean.presenter.adapter.UserReposAdapter
 import br.borba.gitapiconsume.clean.presenter.model.UserRepoUiModel
@@ -41,6 +44,7 @@ class ReposListFragment : Fragment() {
         viewModel.getUserRepos(userDetail.userName)
 
         setObservers()
+        setListeners(userDetail)
 
     }
 
@@ -52,12 +56,19 @@ class ReposListFragment : Fragment() {
         }
     }
 
+    private fun setListeners(user: UsersUiModel) {
+        binding.btnBack.setOnClickListener {
+            val bundle = bundleOf("userDetail" to user)
+            findNavController().navigate(R.id.action_reposListFragment_to_detailFragment, bundle)
+        }
+    }
+
     private fun populateReposList(repos: List<UserRepoUiModel>) {
         binding.rvRepoList.adapter = UserReposAdapter(repos) { onRepoClick(it) }
     }
 
-    private fun onRepoClick(usersUiModel: UsersUiModel) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(usersUiModel.url))
+    private fun onRepoClick(userRepo: UserRepoUiModel) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(userRepo.url))
         if (intent.resolveActivity(requireActivity().packageManager) != null) {
             startActivity(intent)
         }

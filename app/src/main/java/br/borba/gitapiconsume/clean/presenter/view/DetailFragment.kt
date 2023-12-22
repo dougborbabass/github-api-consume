@@ -78,8 +78,6 @@ class DetailFragment : Fragment() {
 
     private fun getDetailToFragmet(user: UsersUiModel) {
         val bundle = bundleOf("userDetail" to user)
-        println("userDetail 2 = ${user.userName}")
-
         findNavController().navigate(R.id.action_detailFragment_to_reposListFragment, bundle)
     }
 
