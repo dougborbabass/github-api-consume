@@ -1,5 +1,6 @@
 package br.borba.gitapiconsume.clean.data.api
 
+import br.borba.gitapiconsume.clean.data.model.UsersDetailResponse
 import br.borba.gitapiconsume.clean.data.model.UsersListResponse
 import br.borba.gitapiconsume.network.BaseResponse
 import retrofit2.Response
@@ -16,6 +17,6 @@ interface GitHubApi {
     ): Response<List<UsersListResponse>>
 
     @GET("/users/{user}")
-    suspend fun getDetail(@Path("user") user: String): Response<UsersListResponse>
+    suspend fun getDetail(@Path("user") user: String): Response<UsersDetailResponse>
 
 }

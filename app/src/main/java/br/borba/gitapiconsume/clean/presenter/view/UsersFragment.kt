@@ -88,7 +88,8 @@ class UsersFragment : Fragment() {
     }
 
     private fun onUserItemClick(user: UsersUiModel) {
-        getDetailToFragmet(user)
+        viewModelDetail.getUserDetail(user.userName)
+        isNewDetail = true
     }
 
     private fun getDetailToFragmet(user: UsersUiModel) {

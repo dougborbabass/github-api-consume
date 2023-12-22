@@ -119,48 +119,6 @@
         <ImageView style="@style/App.ButtonText.ImageChevronRight" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/btn_followers"
-        style="@style/App.ButtonText.Container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/btn_repo">
-
-        <TextView
-            style="@style/App.ButtonText.PrimaryText"
-            android:text="Followers" />
-
-        <TextView
-            android:id="@+id/tv_followers_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="@android:color/tertiary_text_dark" />
-
-        <ImageView style="@style/App.ButtonText.ImageChevronRight" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/btn_following"
-        style="@style/App.ButtonText.Container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/btn_followers">
-
-        <TextView
-            style="@style/App.ButtonText.PrimaryText"
-            android:text="Following" />
-
-        <TextView
-            android:id="@+id/tv_following_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="@android:color/tertiary_text_dark" />
-
-        <ImageView style="@style/App.ButtonText.ImageChevronRight" />
-    </LinearLayout>
-
     <Button
         android:id="@+id/btn_back"
         android:layout_width="match_parent"

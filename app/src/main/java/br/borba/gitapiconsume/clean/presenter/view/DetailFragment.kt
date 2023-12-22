@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import br.borba.cleanmvvm.R
 import br.borba.cleanmvvm.databinding.FragmentDetailBinding
-import br.borba.gitapiconsume.clean.data.model.UsersListResponse
 import br.borba.gitapiconsume.clean.presenter.model.UsersUiModel
+import br.borba.gitapiconsume.util.NumberFormatter
+import coil.load
+import coil.transform.RoundedCornersTransformation
 
 class DetailFragment : Fragment() {
 
@@ -34,7 +37,8 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tvUserName.text = userDetail.userName
+        initUI()
+
 
         binding.btnBack.setOnClickListener {
             findNavController().navigate(R.id.action_detailFragment_to_homeUsers)
@@ -42,4 +46,34 @@ class DetailFragment : Fragment() {
         }
 
     }
+
+    private fun initUI() {
+        with(binding) {
+            binding.tvName.text = userDetail.nameFull
+            binding.tvUserName.text = userDetail.userName
+            ivUserPic.load(userDetail.avatarUrl) {
+                crossfade(true)
+                transformations(RoundedCornersTransformation(20f))
+            }
+            tvFollowersFollowing.setTextAndVisibility(
+                getFollowersFollowing(
+                    userDetail.followers,
+                    userDetail.following
+                )
+            )
+            tvRepoCount.text = userDetail.publicRepos.toString()
+        }
+    }
+
+    private fun getFollowersFollowing(followers: Int, following: Int): String {
+        val followersStr = NumberFormatter.formatWithSuffix(followers)
+        val followingStr = NumberFormatter.formatWithSuffix(following)
+        return "$followersStr followers ▪ $followingStr following"
+    }
+
+    private fun TextView.setTextAndVisibility(text: String?) {
+        visibility = if (text.isNullOrEmpty()) View.GONE else View.VISIBLE
+        text?.let { this.text = it }
+    }
+
 }
