@@ -34,5 +34,11 @@
         <argument
             android:name="userDetail"
             app:argType="br.borba.gitapiconsume.clean.presenter.model.UsersUiModel" />
+        <action
+            android:id="@+id/action_detailFragment_to_home_users"
+            app:destination="@id/home_users"
+            app:popUpTo="@id/home_users"
+            app:popUpToInclusive="true"
+            app:popExitAnim="@anim/nav_default_exit_anim" />
     </fragment>
 </navigation>

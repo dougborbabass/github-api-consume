@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import br.borba.cleanmvvm.R
 import br.borba.cleanmvvm.databinding.FragmentUsersBinding
-import br.borba.gitapiconsume.clean.data.model.UsersListResponse
 import br.borba.gitapiconsume.clean.presenter.adapter.UsersListAdapter
 import br.borba.gitapiconsume.clean.presenter.model.UsersUiModel
 import br.borba.gitapiconsume.clean.presenter.viewmodel.UserDetailViewModel
@@ -21,6 +20,8 @@ class UsersFragment : Fragment() {
     private val viewModelUsersList: UsersViewModel by sharedViewModel()
     private val viewModelDetail: UserDetailViewModel by sharedViewModel()
     private lateinit var binding: FragmentUsersBinding
+    private var isNewDetail = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,7 +53,8 @@ class UsersFragment : Fragment() {
                     viewModelDetail.lauchDataLoad {
                         viewModelDetail.getUserDetail(strUser.toString())
                         searchView.setQuery("", false);
-                        searchView.clearFocus();
+                        searchView.clearFocus()
+                        isNewDetail = true
                     }
                     return false
                 }
@@ -73,7 +75,10 @@ class UsersFragment : Fragment() {
         }
         with(viewModelDetail) {
             userDetail.observe(viewLifecycleOwner) {
-                println("it.id = ${it.id}")
+                if (isNewDetail) {
+                    getDetailToFragmet(it)
+                    isNewDetail = false
+                }
             }
         }
     }
@@ -83,8 +88,11 @@ class UsersFragment : Fragment() {
     }
 
     private fun onUserItemClick(user: UsersUiModel) {
+        getDetailToFragmet(user)
+    }
+
+    private fun getDetailToFragmet(user: UsersUiModel) {
         val bundle = bundleOf("userDetail" to user)
         findNavController().navigate(R.id.action_homeUsers_to_detailFragment, bundle)
     }
-
 }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import br.borba.cleanmvvm.R
 import br.borba.cleanmvvm.databinding.FragmentDetailBinding
 import br.borba.gitapiconsume.clean.data.model.UsersListResponse
@@ -34,6 +35,11 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.tvUserName.text = userDetail.userName
+
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.action_detailFragment_to_homeUsers)
+
+        }
 
     }
 }

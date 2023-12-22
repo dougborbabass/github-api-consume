@@ -1,6 +1,5 @@
-package br.borba.cleanmvvm.domain
+package br.borba.gitapiconsume.domain
 
-import br.borba.gitapiconsume.clean.data.model.UsersListResponse
 import br.borba.gitapiconsume.clean.domain.model.UsersListModel
 
 object UsersFactory {
@@ -8,11 +7,13 @@ object UsersFactory {
     val users = listOf(
         UsersListModel(
             id = 0,
-            name = "Douglas"
+            userName = "Douglas",
+            avatarUrl = "https://avatars.githubusercontent.com/u/1?v=4"
         ),
         UsersListModel(
             id = 1,
-            name = "Borba"
+            userName = "Borba",
+            avatarUrl = "https://avatars.githubusercontent.com/u/1?v=4"
         )
     )
 }
