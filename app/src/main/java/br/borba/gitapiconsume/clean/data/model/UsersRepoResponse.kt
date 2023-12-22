@@ -6,12 +6,8 @@ import br.borba.gitapiconsume.clean.domain.model.UsersListModel
 import com.google.gson.annotations.SerializedName
 
 data class UserRepoItemResponse (
-    @SerializedName("created_at")
-    val createdAt: String = "",
     @SerializedName("description")
     val description: String? = "",
-    @SerializedName("forks")
-    val forks: Int = 0,
     @SerializedName("forks_count")
     val forksCount: Int = 0,
     @SerializedName("full_name")
@@ -33,14 +29,10 @@ data class UserRepoItemResponse (
     @SerializedName("updated_at")
     val updatedAt: String = "",
     @SerializedName("url")
-    val url: String = "",
-    @SerializedName("watchers")
-    val watchers: Int = 0
+    val url: String = ""
 )
-fun UserRepoItemResponse.toFinalUsersList() = UsersListModel(
-    createdAt = this.createdAt,
+fun UserRepoItemResponse.toFinaRepoList() = UsersListModel(
     description = this.description,
-    forks = this.forks,
     forksCount = this.forksCount,
     fullName = this.fullName,
     gitUrl = this.gitUrl,

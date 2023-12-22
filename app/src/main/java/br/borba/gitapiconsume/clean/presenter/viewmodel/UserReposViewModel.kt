@@ -21,7 +21,7 @@ class UserReposViewModel(
     private val _userRepoos = MutableLiveData<List<UsersUiModel>>()
     val userRepos = _userRepoos as LiveData<List<UsersUiModel>>
 
-    fun getUserDetail(user: String) {
+    fun getUserRepos(user: String) {
         viewModelScope.launch {
             val usersList = getUserReposUseCase(user)
 

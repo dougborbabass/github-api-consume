@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import br.borba.cleanmvvm.R
 import br.borba.cleanmvvm.databinding.FragmentDetailBinding
 import br.borba.gitapiconsume.clean.presenter.model.UsersUiModel
@@ -18,6 +20,7 @@ class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
     private lateinit var userDetail: UsersUiModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +41,7 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initUI()
-
-
-        binding.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_detailFragment_to_homeUsers)
-
-        }
+        initListener()
 
     }
 
@@ -63,6 +61,26 @@ class DetailFragment : Fragment() {
             )
             tvRepoCount.text = userDetail.publicRepos.toString()
         }
+    }
+
+    private fun initListener() {
+        with(binding) {
+            btnRepo.setOnClickListener {
+                println("userDetail = ${userDetail.userName}")
+                getDetailToFragmet(userDetail)
+            }
+            btnBack.setOnClickListener {
+                findNavController().navigate(R.id.action_detailFragment_to_homeUsers)
+
+            }
+        }
+    }
+
+    private fun getDetailToFragmet(user: UsersUiModel) {
+        val bundle = bundleOf("userDetail" to user)
+        println("userDetail 2 = ${user.userName}")
+
+        findNavController().navigate(R.id.action_detailFragment_to_reposListFragment, bundle)
     }
 
     private fun getFollowersFollowing(followers: Int, following: Int): String {

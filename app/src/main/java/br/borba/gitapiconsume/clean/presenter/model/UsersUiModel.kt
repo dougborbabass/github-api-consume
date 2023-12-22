@@ -12,7 +12,12 @@ class UsersUiModel(
     val nameFull: String? = "",
     val followers: Int = 0,
     val following: Int = 0,
-    val publicRepos: Int = 0
+    val publicRepos: Int = 0,
+    val url: String = "",
+    val forkCount: Int = 0,
+    val starCount: Int = 0,
+    val description: String? = "",
+    val language: String? = ""
 ) : Parcelable
 
 fun UsersListModel.toUiModel() = UsersUiModel(
@@ -22,6 +27,11 @@ fun UsersListModel.toUiModel() = UsersUiModel(
     nameFull = this.nameFull,
     followers = this.followers,
     following = this.following,
-    publicRepos = this.publicRepos
+    publicRepos = this.publicRepos,
+    url = this.url,
+    forkCount = this.forksCount,
+    starCount = this.starsCount,
+    description = this.description,
+    language = this.language
 )
 

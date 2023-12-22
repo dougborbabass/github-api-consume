@@ -1,6 +1,7 @@
 package br.borba.gitapiconsume.clean.data.repository
 
 import br.borba.gitapiconsume.clean.data.api.GitHubApi
+import br.borba.gitapiconsume.clean.data.model.toFinaRepoList
 import br.borba.gitapiconsume.clean.data.model.toFinalUsersList
 import br.borba.gitapiconsume.clean.domain.model.UsersListModel
 import br.borba.gitapiconsume.network.Output
@@ -11,7 +12,7 @@ class MainRepositoryImpl(
 ) : MainRepository {
 
     override suspend fun getListUsers(): List<UsersListModel> {
-        val result = service.getListUsers(20,1).parseResponse()
+        val result = service.getListUsers(20, 1).parseResponse()
         return when (result) {
             is Output.Success -> {
                 val listUsersResult = result.value
@@ -20,6 +21,7 @@ class MainRepositoryImpl(
                     it.toFinalUsersList()
                 }
             }
+
             is Output.Failure -> throw GetUsersException()
         }
     }
@@ -31,6 +33,7 @@ class MainRepositoryImpl(
                 val listUsersResult = result.value
                 listUsersResult.toFinalUsersList()
             }
+
             is Output.Failure -> throw GetUsersException()
         }
     }
@@ -42,9 +45,10 @@ class MainRepositoryImpl(
                 val listReposResult = result.value
 
                 listReposResult.map {
-                    it.toFinalUsersList()
+                    it.toFinaRepoList()
                 }
             }
+
             is Output.Failure -> throw GetUsersException()
         }
     }
