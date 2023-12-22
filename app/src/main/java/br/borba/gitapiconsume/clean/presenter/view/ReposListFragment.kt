@@ -43,6 +43,8 @@ class ReposListFragment : Fragment() {
 
         viewModel.getUserRepos(userDetail.userName)
 
+        binding.progress.visibility = View.VISIBLE
+
         setObservers()
         setListeners(userDetail)
 
@@ -50,6 +52,8 @@ class ReposListFragment : Fragment() {
 
     private fun setObservers() {
         with(viewModel) {
+            binding.progress.visibility = View.GONE
+
             userRepos.observe(viewLifecycleOwner) {
                 populateReposList(it)
             }

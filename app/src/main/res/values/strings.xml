@@ -46,4 +46,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="voltar">voltar</string>
+    <string name="amostragem_com_20_usuarios_do_github">Amostragem com 20 usuarios do github</string>
+    <string name="algo_deu_errado_tente_mais_tarde">Algo deu errado, tente mais tarde.</string>
 </resources>

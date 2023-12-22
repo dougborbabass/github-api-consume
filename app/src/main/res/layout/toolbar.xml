@@ -6,6 +6,6 @@
     android:layout_height="wrap_content"
     android:elevation="4dp"
     app:titleTextColor="@color/white"
-    android:background="@color/purple_500">
+    android:background="@color/azul_1">
 
 </androidx.appcompat.widget.Toolbar>

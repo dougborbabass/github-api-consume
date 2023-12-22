@@ -4,7 +4,7 @@
     <style name="Theme.CleanMVVM" parent="android:Theme.Material.Light.NoActionBar" />
     <!-- Base application theme. -->
     <style name="Base.Theme.CleanMVVM" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:statusBarColor">@color/purple_500</item>
+        <item name="android:statusBarColor">@color/azul_1</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>

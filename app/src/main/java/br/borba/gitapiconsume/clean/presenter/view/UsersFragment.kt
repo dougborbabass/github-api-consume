@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -34,6 +35,7 @@ class UsersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModelUsersList.lauchDataLoad { viewModelUsersList.getUsers() }
+        binding.progress.visibility = View.VISIBLE
 
         setListeners()
         setObservers()
@@ -64,13 +66,16 @@ class UsersFragment : Fragment() {
 
     private fun setObservers() {
         with(viewModelUsersList) {
-            loading.observe(viewLifecycleOwner) { showProgressBar ->
-                if (showProgressBar) binding.progress.visibility = View.VISIBLE
-                else binding.progress.visibility = View.GONE
-            }
-
             users.observe(viewLifecycleOwner) { listUsersUiModel ->
-                populateUsersList(listUsersUiModel)
+                binding.progress.visibility = View.GONE
+                if (listUsersUiModel.isNotEmpty()) {
+                    populateUsersList(listUsersUiModel)
+                } else {
+                    Toast.makeText(
+                        activity,
+                        getString(R.string.algo_deu_errado_tente_mais_tarde), Toast.LENGTH_LONG
+                    ).show()
+                }
             }
         }
         with(viewModelDetail) {
