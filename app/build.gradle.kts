@@ -72,7 +72,8 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     testImplementation("junit:junit:4.13.2")
-    testImplementation ("io.mockk:mockk:1.12.4")
+    testImplementation("io.mockk:mockk:1.12.4")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
@@ -80,22 +81,29 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-    implementation("io.coil-kt:coil:1.1.1")
+    // coil
+    val coilVersion = "1.3.2"
+    implementation("io.coil-kt:coil:$coilVersion")
 
-    val nav_version = "2.7.4"
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    // navigation
+    val navVersion = "2.7.6"
+    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
 
-    val koin_version = "3.2.0"
-    implementation("io.insert-koin:koin-core:$koin_version")
-    implementation("io.insert-koin:koin-android:$koin_version")
+    // DI
+    val koinVersion = "3.2.0"
+    implementation("io.insert-koin:koin-core:$koinVersion")
+    implementation("io.insert-koin:koin-android:$koinVersion")
 
-    // Retrofit
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    // Retrofit e parser
+    val gsonVersion = "2.9.0"
+    val logIntVersion = "4.10.0"
+    implementation("com.squareup.retrofit2:converter-gson:$gsonVersion")
+    api("com.squareup.retrofit2:retrofit:$gsonVersion")
+    api("com.squareup.retrofit2:converter-moshi:$gsonVersion")
+    api("com.squareup.okhttp3:logging-interceptor:$logIntVersion")
 
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.22")
-
-    api("com.squareup.retrofit2:retrofit:2.9.0")
-    api("com.squareup.retrofit2:converter-moshi:2.9.0")
-    api("com.squareup.okhttp3:logging-interceptor:4.10.0")
+    // reflection
+    val reflectionVersion = "1.8.22"
+    implementation("org.jetbrains.kotlin:kotlin-reflect:$reflectionVersion")
 }

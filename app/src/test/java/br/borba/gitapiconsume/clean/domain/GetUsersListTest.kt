@@ -1,6 +1,5 @@
-package br.borba.gitapiconsume.domain
+package br.borba.gitapiconsume.clean.domain
 
-import br.borba.cleanmvvm.domain.UsersFactory
 import br.borba.gitapiconsume.clean.data.repository.GetUsersException
 import br.borba.gitapiconsume.clean.data.repository.MainRepository
 import br.borba.gitapiconsume.clean.domain.GetUsersList

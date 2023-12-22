@@ -1,4 +1,4 @@
-package br.borba.gitapiconsume.domain
+package br.borba.gitapiconsume.clean.domain
 
 import br.borba.gitapiconsume.clean.domain.model.UsersListModel
 
