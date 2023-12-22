@@ -12,6 +12,8 @@ Libs utilizadas:
 - JUnit
 - Mocck
 
+- Testes unitarios da camada de domínio foram iniciados
+
   Resumo do projeto:
 
 O app inicialmente mostra uma lista geral de usuarios do github, consumindo o endpoint: https://api.github.com/users
