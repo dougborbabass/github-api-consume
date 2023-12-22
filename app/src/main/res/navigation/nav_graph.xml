@@ -40,5 +40,20 @@
             app:popUpTo="@id/home_users"
             app:popUpToInclusive="true"
             app:popExitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_detailFragment_to_reposListFragment"
+            app:destination="@id/reposListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reposListFragment"
+        android:name="br.borba.gitapiconsume.clean.presenter.view.ReposListFragment"
+        android:label="fragment_repos_list"
+        tools:layout="@layout/fragment_repos_list" >
+        <action
+            android:id="@+id/action_reposListFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_reposListFragment_to_home_users"
+            app:destination="@id/home_users" />
     </fragment>
 </navigation>
