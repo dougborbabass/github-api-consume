@@ -19,4 +19,7 @@ interface GitHubApi {
     @GET("/users/{user}")
     suspend fun getDetail(@Path("user") user: String): Response<UsersDetailResponse>
 
+    @GET("/users/{user}/repos")
+    suspend fun getRepos(@Path("user") user: String): Response<List<UsersListResponse>>
+
 }

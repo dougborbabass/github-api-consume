@@ -9,7 +9,7 @@ class UsersUiModel(
     val userName: String,
     val avatarUrl: String = "",
     val id: Int,
-    val nameFull: String = "",
+    val nameFull: String? = "",
     val followers: Int = 0,
     val following: Int = 0,
     val publicRepos: Int = 0

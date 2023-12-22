@@ -34,12 +34,26 @@ class MainRepositoryImpl(
             is Output.Failure -> throw GetUsersException()
         }
     }
-}
 
+    override suspend fun getUserRepos(user: String): List<UsersListModel> {
+        val result = service.getRepos(user).parseResponse()
+        return when (result) {
+            is Output.Success -> {
+                val listReposResult = result.value
+
+                listReposResult.map {
+                    it.toFinalUsersList()
+                }
+            }
+            is Output.Failure -> throw GetUsersException()
+        }
+    }
+}
 
 interface MainRepository {
     suspend fun getListUsers(): List<UsersListModel>
     suspend fun getUserDetail(user: String): UsersListModel
+    suspend fun getUserRepos(user: String): List<UsersListModel>
 }
 
 class GetUsersException : Exception()

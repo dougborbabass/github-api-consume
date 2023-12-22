@@ -1,5 +1,6 @@
 package br.borba.gitapiconsume.network
 
+import br.borba.gitapiconsume.util.NullableTypeAdapterFactor
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -10,7 +11,9 @@ private const val BASE_URL = "https://api.github.com/"
 
 class ServiceGitHubApi {
 
-    private val gson = GsonBuilder().setLenient().create()
+    private val gson = GsonBuilder()
+        .setLenient()
+        .registerTypeAdapterFactory(NullableTypeAdapterFactor.NullableTypAdapterFactory()).create()
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(OkHttpClient.Builder().addInterceptor(logInterceptor()).build())

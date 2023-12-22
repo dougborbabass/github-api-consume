@@ -7,7 +7,7 @@ data class UsersDetailResponse(
     @SerializedName("login")
     val userName: String = "",
     @SerializedName("name")
-    val nameFull: String = "",
+    val nameFull: String? = "",
     @SerializedName("id")
     val id: Int = 0,
     @SerializedName("avatar_url")
